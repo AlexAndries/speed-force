@@ -1,0 +1,46 @@
+$palettes: (
+  orange: (
+    base:#f5821f,
+    light: #467dbc,
+    dark: #1b1c51
+  ),
+  green: (
+    base: #a6956b
+  ),
+  white: (
+    base: #fff,
+    light: #6a7072,
+    dark: #f8f8f8
+  ),
+  black: (
+    base: #000,
+    light: #323232,
+    dark: #24201e,
+    ultra-dark: #030303
+  ),
+  grey: (
+    base: #bdbdbd,
+    light: #d2d2d2,
+    dark: #e4e4e4,
+    ultra-light: #f4f4f4
+  ),
+  red: (
+    base: #fc4951
+  )
+);
+
+$breakpoints: (
+  header: '(max-width: 1400px)',
+  minDesktop: '(min-width: 1200px)',
+  notLaptop: '(max-width: 992px)',
+  maxLaptop: '(max-width: 1199px)',
+  laptop: '(min-width: 992px) and (max-width: 1199px)',
+  minLaptop: '(min-width: 992px)',
+  maxTablet: '(max-width: 991px)',
+  tablet: '(min-width: 768px) and (max-width: 991px)',
+  minTablet: '(min-width: 768px)',
+  maxPhone: '(max-width: 767px)',
+  phone: '(max-width: 767px)',
+  smallPhone: '(max-width: 468px)',
+  ipad: '(min-width: 768px) and (max-width: 1024px)'
+);

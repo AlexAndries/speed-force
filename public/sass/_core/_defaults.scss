@@ -1,0 +1,104 @@
+.black {
+	@include generateColorClasses(black);
+}
+
+.flex {
+	display: flex !important;
+	&__primary {
+		flex: 1;
+	}
+	&--hide-mobile {
+		@include respondTo(phone) {
+			display: block !important;
+		}
+	}
+	&--hide-tablet {
+		@include respondTo(tablet) {
+			display: block !important;
+		}
+	}
+
+	&__column {
+		flex-direction: column;
+	}
+
+	&__justfify-end {
+		justify-content: flex-end;
+	}
+
+	&__justfify-space-between {
+		justify-content: space-between;
+	}
+
+	&__center {
+		justify-content: center;
+	}
+
+	&__bottom {
+		align-items: flex-end;
+		-ms-flex-align: end;
+		-webkit-box-align: end;
+		-ms-grid-row-align: flex-end;
+	}
+
+	&__self-bottom {
+		align-self: flex-end;
+		-ms-flex-item-align: end;
+	}
+
+	&__vertical-center {
+		align-items: center;
+	}
+	&__wrap {
+		flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+
+		> * {
+			margin-right: -.1rem;
+		}
+
+		&--mobile {
+			@include respondTo(maxPhone) {
+				flex-wrap: wrap;
+				-webkit-flex-wrap: wrap;
+
+				> * {
+					margin-right: -.1rem;
+				}
+			}
+		}
+	}
+}
+
+.row {
+	&--smaller {
+		margin-left: -.5rem;
+		margin-right: -.5rem;
+
+		> div {
+			padding-left: .5rem;
+			padding-right: .5rem;
+		}
+	}
+
+	&--no-margin {
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 1rem;
+		padding-right: 1rem;
+
+		> div {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+}
+
+.relative {
+	position: relative;
+}
+
+.clear {
+	height: .1rem;
+	width: 100%;
+}

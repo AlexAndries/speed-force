@@ -1,0 +1,13 @@
+{
+	"name": "wordpress/speed-force",
+	"license": "GPL2",
+	"authors": [
+		{
+			"name": "Alex Andries",
+			"email": "alexandru.andries@outlook.com"
+		}
+	],
+	"require": {
+		"entrecore/gtmetrix": "^1.0"
+	}
+}
