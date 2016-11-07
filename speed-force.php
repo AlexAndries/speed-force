@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Project: speed-force
+ * Project: SpeedForce
  * User: Alex Andries <alexandru.andries@outlook.com>
  * Plugin Name: SpeedForce
  * Plugin URI: http://speed-plugin.wordpress.dev/
