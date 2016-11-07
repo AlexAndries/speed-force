@@ -8,7 +8,7 @@ class SpeedForceAdmin {
 
   public function __construct() {
     $this->loadVendors();
-    $this->loadGTmetricsFiles();
+    //$this->loadGTMetrixFiles();
   }
 
   private function loadVendors() {
@@ -17,11 +17,13 @@ class SpeedForceAdmin {
     }
   }
 
-  private function loadGTmetricsFiles() {
-    require_once(SpeedForce::getAbsPath() . 'admin/gtmetrix/speed-force-gtmetrix-resources.php');
-    require_once(SpeedForce::getAbsPath() . 'admin/gtmetrix/speed-force-gtmetrix.php');
+  private function loadGTMetrixFiles() {
+    require_once(SpeedForce::getAbsPath() . 'admin/gtmetrix/gtmetrix-client.php');
+    require_once(SpeedForce::getAbsPath() . 'admin/gtmetrix/gtmetrix-report.php');
+    require_once(SpeedForce::getAbsPath() . 'admin/gtmetrix/gtmetrix-wrapper.php');
 
-    new SpeedForceGTmetrix(GTMETRIX_USER, GTMETRIX_API);
+    $gtmetrix = new GTmetrixWrapper(SPEED_FORCE_GTMETRIX_USER, SPEED_FORCE_GTMETRIX_API, SPEED_FORCE_WEBSITE_HTTP_USER, SPEED_FORCE_WEBSITE_HTTP_PASS);
+    $gtmetrix->runTest('https://www.google.ro');
   }
 }
 

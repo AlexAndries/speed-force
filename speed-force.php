@@ -34,12 +34,18 @@ class SpeedForce {
 
   const PLUGIN_FOLDER = 'speed-force';
 
+  const REPORTS_TABLE = 'speed_force_reports';
+
+  const RESOURCES_TABLE = 'speed_force_resources';
+
+  const PATH_TO_REPORTS = 'public/reports/';
+
   public function __construct() {
-    register_activation_hook(__FILE__, array(&$this, 'activateHook'));
+    register_activation_hook(__FILE__, array($this, 'activateHook'));
 
-    register_deactivation_hook(__FILE__, array(&$this, 'deactivateHook'));
+    register_deactivation_hook(__FILE__, array($this, 'deactivateHook'));
 
-    register_uninstall_hook(__FILE__, array(&$this, 'uninstallHook'));
+    register_uninstall_hook(__FILE__, array($this, 'uninstallHook'));
 
     $this->registerAdminClass();
     $this->registerPublicClass();
@@ -62,7 +68,32 @@ class SpeedForce {
   }
 
   public function activateHook() {
+    global $wpdb;
 
+    $wpdb->query("
+    CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . self::REPORTS_TABLE . "(
+      id int AUTO_INCREMENT PRIMARY KEY,
+      report_id VARCHAR(255),
+      url TEXT,
+      report_url VARCHAR(255),
+      page_speed_score VARCHAR(255),
+      y_slow_score VARCHAR(255),
+      page_bytes VARCHAR(255),
+      page_time_load VARCHAR(255),
+      page_elements int,
+      date_created DATETIME DEFAULT NOW()
+    );
+    ");
+
+    $wpdb->query(" 
+    CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . self::RESOURCES_TABLE . "(
+      id int AUTO_INCREMENT PRIMARY KEY,
+      report_id VARCHAR(255),
+      page_speed TEXT,
+      y_slow TEXT,
+      report_pdf TEXT
+    )
+    ");
   }
 
   public function deactivateHook() {
@@ -70,7 +101,10 @@ class SpeedForce {
   }
 
   public function uninstallHook() {
+    global $wpdb;
 
+    $wpdb->query("DROP TABLE IF EXISTS " . $wpdb->prefix . self::RESOURCES_TABLE . "; ");
+    $wpdb->query("DROP TABLE IF EXISTS " . $wpdb->prefix . self::REPORTS_TABLE . "; ");
   }
 
   public static function getRelativePath() {

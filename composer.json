@@ -7,7 +7,5 @@
 			"email": "alexandru.andries@outlook.com"
 		}
 	],
-	"require": {
-		"entrecore/gtmetrix": "^1.0"
-	}
+	"require": {}
 }
