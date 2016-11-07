@@ -2,7 +2,6 @@
 
 config
 vendor
-public/css/*.css
 public/.sass-cache
 
 *.pdf
