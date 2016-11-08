@@ -9,12 +9,22 @@ class SpeedForceAdmin {
   public function __construct() {
     $this->loadVendors();
     //$this->loadGTMetrixFiles();
+    $this->loadPageInsightsFiles();
   }
 
   private function loadVendors() {
     if (file_exists(SpeedForce::getAbsPath() . 'vendor/autoload.php')) {
       require_once(SpeedForce::getAbsPath() . 'vendor/autoload.php');
     }
+  }
+
+  private function loadPageInsightsFiles() {
+    require_once(SpeedForce::getAbsPath() . 'admin/google-page-insights/google-auth.php');
+    require_once(SpeedForce::getAbsPath() . 'admin/google-page-insights/google-page-insights.php');
+
+    $pageInsights = new GooglePageInsights();
+    $pageInsights->runPageSpeedTest();
+    exit();
   }
 
   private function loadGTMetrixFiles() {

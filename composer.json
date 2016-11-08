@@ -7,5 +7,7 @@
 			"email": "alexandru.andries@outlook.com"
 		}
 	],
-	"require": {}
+	"require": {
+		"google/apiclient": "^2.1"
+	}
 }
