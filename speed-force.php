@@ -38,6 +38,8 @@ class SpeedForce {
 
   const RESOURCES_TABLE = 'speed_force_resources';
 
+  const PAGE_INSIGHTS_TABLE = 'speed_force_page_insights';
+
   const PATH_TO_REPORTS = 'public/reports/';
 
   public function __construct() {
@@ -72,7 +74,7 @@ class SpeedForce {
 
     $wpdb->query("
     CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . self::REPORTS_TABLE . "(
-      id int AUTO_INCREMENT PRIMARY KEY,
+      id INT AUTO_INCREMENT PRIMARY KEY,
       report_id VARCHAR(255),
       url TEXT,
       report_url VARCHAR(255),
@@ -80,18 +82,34 @@ class SpeedForce {
       y_slow_score VARCHAR(255),
       page_bytes VARCHAR(255),
       page_time_load VARCHAR(255),
-      page_elements int,
+      page_elements INT,
       date_created DATETIME DEFAULT NOW()
     );
     ");
 
     $wpdb->query(" 
     CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . self::RESOURCES_TABLE . "(
-      id int AUTO_INCREMENT PRIMARY KEY,
+      id INT AUTO_INCREMENT PRIMARY KEY,
       report_id VARCHAR(255),
       page_speed TEXT,
       y_slow TEXT,
       report_pdf TEXT
+    )
+    ");
+
+    $wpdb->query("
+    CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . self::PAGE_INSIGHTS_TABLE . "(
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      url TEXT,
+      mobile_speed decimal(3, 0),
+      desktop_speed decimal(3, 0),
+      ui_score decimal(3, 0),
+      loading_mobile TEXT,
+      loading_desktop TEXT,
+      rules_mobile TEXT,
+      rules_desktop TEXT,
+      rules_ui TEXT,
+      date_created DATETIME DEFAULT NOW()
     )
     ");
   }

@@ -319,22 +319,10 @@ class GTmetrixReport {
       'report_url'       => $this->reportUrl,
       'page_speed_score' => $this->pagespeedScore,
       'y_slow_score'     => $this->yslowScore,
-      'page_bytes'       => $this->convertBytesTo($this->pageBytes),
-      'page_time_load'   => $this->convertMillisecondsTo($this->pageLoadTime),
+      'page_bytes'       => SpeedForceAdmin::convertBytesTo($this->pageBytes),
+      'page_time_load'   => SpeedForceAdmin::convertMillisecondsTo($this->pageLoadTime),
       'page_elements'    => $this->pageElements
     ));
-  }
-
-  private function convertBytesTo($bytes) {
-    if ($bytes / 1048576 > 1) {
-      return number_format($bytes / 1048576, 2) . 'MB';
-    }
-
-    return number_format($bytes / 1024, 2) . 'KB';
-  }
-
-  private function convertMillisecondsTo($milliseconds) {
-    return number_format($milliseconds / 1000, 2) . 's';
   }
 
   public function saveResourcesToDB() {
