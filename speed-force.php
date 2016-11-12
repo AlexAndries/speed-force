@@ -40,6 +40,8 @@ class SpeedForce {
 
   const PAGE_INSIGHTS_TABLE = 'speed_force_page_insights';
 
+  const WEB_PAGE_TEST_ORG_TABLE = 'speed_force_web_page_test';
+
   const PATH_TO_REPORTS = 'public/reports/';
 
   public function __construct() {
@@ -101,14 +103,25 @@ class SpeedForce {
     CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . self::PAGE_INSIGHTS_TABLE . "(
       id INT AUTO_INCREMENT PRIMARY KEY,
       url TEXT,
-      mobile_speed decimal(3, 0),
-      desktop_speed decimal(3, 0),
-      ui_score decimal(3, 0),
+      mobile_speed DECIMAL(3, 0),
+      desktop_speed DECIMAL(3, 0),
+      ui_score DECIMAL(3, 0),
       loading_mobile TEXT,
       loading_desktop TEXT,
       rules_mobile TEXT,
       rules_desktop TEXT,
       rules_ui TEXT,
+      date_created DATETIME DEFAULT NOW()
+    )
+    ");
+
+    $wpdb->query("
+    CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . self::WEB_PAGE_TEST_ORG_TABLE . "(
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      url TEXT,
+      report_id VARCHAR(255),
+      first_view TEXT,
+      repeat_view TEXT,
       date_created DATETIME DEFAULT NOW()
     )
     ");
@@ -124,6 +137,7 @@ class SpeedForce {
     $wpdb->query("DROP TABLE IF EXISTS " . $wpdb->prefix . self::RESOURCES_TABLE . "; ");
     $wpdb->query("DROP TABLE IF EXISTS " . $wpdb->prefix . self::REPORTS_TABLE . "; ");
     $wpdb->query("DROP TABLE IF EXISTS " . $wpdb->prefix . self::PAGE_INSIGHTS_TABLE . "; ");
+    $wpdb->query("DROP TABLE IF EXISTS " . $wpdb->prefix . self::WEB_PAGE_TEST_ORG_TABLE . "; ");
   }
 
   public static function getRelativePath() {

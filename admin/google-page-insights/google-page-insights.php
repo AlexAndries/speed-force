@@ -17,7 +17,7 @@ class GooglePageInsights extends GoogleAuth {
 
     $this->client->setApplicationName('Page Speed Insights');
     $this->pageInsightsClient = new Google_Service_Pagespeedonline($this->client);
-    $this->results = new GooglePageInsightsResult();
+    $this->results = new GooglePageInsightsReport();
   }
 
   public function runPageSpeedTest($url) {
@@ -64,16 +64,14 @@ class GooglePageInsights extends GoogleAuth {
   }
 
   private function parseResults(Google_Service_Pagespeedonline_Result $result, $type) {
-    var_dump($result);
-    exit();
     if ($result->getResponseCode() !== 200) {
-      throw new Exception('Error on $result');
+      throw new Exception('Error on $result'); //todo: update error messages
     }
 
     switch ($type) {
       case 'mobile':
-        $this->results->setMobileSpeed($result->ruleGroups['SPEED']->score);
-        $this->results->setUi($result->ruleGroups['USABILITY']->score);
+        $this->results->setMobileSpeed($result->ruleGroups['SPEED']->score)
+                      ->setUi($result->ruleGroups['USABILITY']->score);
         break;
 
       case 'desktop':

@@ -10,6 +10,7 @@ class SpeedForceAdmin {
     $this->loadVendors();
     //$this->loadGTMetrixFiles();
     //$this->loadPageInsightsFiles();
+    //$this->loadWebPageTestOrgFiles();
   }
 
   private function loadVendors() {
@@ -18,9 +19,18 @@ class SpeedForceAdmin {
     }
   }
 
+  private function loadWebPageTestOrgFiles() {
+    require_once(SpeedForce::getAbsPath() . 'admin/web-page-test-org/web-page-test-org-auth.php');
+    require_once(SpeedForce::getAbsPath() . 'admin/web-page-test-org/web-page-test-org-report.php');
+    require_once(SpeedForce::getAbsPath() . 'admin/web-page-test-org/web-page-test-org-wrapper.php');
+
+    $webPageTestOrg = new WebPageTestOrgWrapper(SPEED_FORCE_WEB_PAGE_TEST_API);
+
+  }
+
   private function loadPageInsightsFiles() {
     require_once(SpeedForce::getAbsPath() . 'admin/google-page-insights/google-auth.php');
-    require_once(SpeedForce::getAbsPath() . 'admin/google-page-insights/google-page-insights-result.php');
+    require_once(SpeedForce::getAbsPath() . 'admin/google-page-insights/google-page-insights-report.php');
     require_once(SpeedForce::getAbsPath() . 'admin/google-page-insights/google-page-insights-rules.php');
     require_once(SpeedForce::getAbsPath() . 'admin/google-page-insights/google-page-insights.php');
 

@@ -4,7 +4,7 @@
  * Project: SpeedForce
  * User: Alex Andries <alexandru.andries@outlook.com>
  */
-class GooglePageInsightsResult {
+class GooglePageInsightsReport {
 
   private $mobileSpeed;
 
@@ -29,7 +29,7 @@ class GooglePageInsightsResult {
    * @param $data
    * @param $type
    *
-   * @return GooglePageInsightsResult
+   * @return GooglePageInsightsReport
    */
   public function setRule($name, $data, $type) {
     $this->rules[$type][$name] = $data;
@@ -57,7 +57,7 @@ class GooglePageInsightsResult {
   /**
    * @param mixed $mobileSpeed
    *
-   * @return GooglePageInsightsResult
+   * @return GooglePageInsightsReport
    */
   public function setMobileSpeed($mobileSpeed) {
     $this->mobileSpeed = $mobileSpeed;
@@ -75,7 +75,7 @@ class GooglePageInsightsResult {
   /**
    * @param mixed $ui
    *
-   * @return GooglePageInsightsResult
+   * @return GooglePageInsightsReport
    */
   public function setUi($ui) {
     $this->ui = $ui;
@@ -93,7 +93,7 @@ class GooglePageInsightsResult {
   /**
    * @param mixed $desktopSpeed
    *
-   * @return GooglePageInsightsResult
+   * @return GooglePageInsightsReport
    */
   public function setDesktopSpeed($desktopSpeed) {
     $this->desktopSpeed = $desktopSpeed;
