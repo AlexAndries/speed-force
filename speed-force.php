@@ -123,6 +123,7 @@ class SpeedForce {
 
     $wpdb->query("DROP TABLE IF EXISTS " . $wpdb->prefix . self::RESOURCES_TABLE . "; ");
     $wpdb->query("DROP TABLE IF EXISTS " . $wpdb->prefix . self::REPORTS_TABLE . "; ");
+    $wpdb->query("DROP TABLE IF EXISTS " . $wpdb->prefix . self::PAGE_INSIGHTS_TABLE . "; ");
   }
 
   public static function getRelativePath() {
